@@ -98,7 +98,7 @@ void setup() {
 		for (int j = 0; j < soilHealth[i].length; j++) {
 			 // 0: no soil, 15: soil only, 30: 1 stone, 45: 2 stones
 			soilHealth[i][j] = 15;
-      
+            
 		}
 	}
 
@@ -194,9 +194,12 @@ void draw() {
       float x = cabbageX[i];
       float y = cabbageY[i];
       if(playerX < x+80 && playerX+80 > x
-      && playerY < y+80 && playerX+80 > y){
-        x = -80;
+      && playerY < y+i*320+80 && playerY+80 > y+i*320){
+        cabbageX[i] = -80;
         playerHealth ++;
+        if(playerHealth > 5){
+          playerHealth = 5;
+        }
       }
       image(cabbage, x, y+i*320);
     }
@@ -330,9 +333,19 @@ void draw() {
     for(int i=0; i<nbrSoldier; i++){
       float x = soldierX[i];
       float y = soldierY[i];
+      if(playerX < x+80 && playerX+80 > x
+      && playerY < y+i*320+80 && playerY+80 > y+i*320){
+        playerHealth --;
+        playerX = 320;
+        playerY = -80;
+        if(playerHealth <= 0){
+          gameState = GAME_OVER;
+        }
+      }
       image(soldier, x-80, y+i*320);
-      x += soldierSpeed;
-      x %= 640+80;
+      soldierX[i] += soldierSpeed;
+      soldierX[i] %= 640+80;
+      println(x, y+i*320);
     }
     
     
@@ -358,6 +371,9 @@ void draw() {
 		popMatrix();
 
 		// Health UI
+    for(int i=0; i<playerHealth; i++){
+      image(life, 10+i*70, 10);
+    }
 
 		break;
 
