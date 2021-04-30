@@ -22,6 +22,9 @@ final int START_BUTTON_Y = 360;
 
 float[] cabbageX, cabbageY, soldierX, soldierY;
 float soldierSpeed = 2f;
+int nbrCabbage = 6;
+int nbrSoldier = 6;
+
 
 float playerX, playerY;
 int playerCol, playerRow;
@@ -95,13 +98,25 @@ void setup() {
 		for (int j = 0; j < soilHealth[i].length; j++) {
 			 // 0: no soil, 15: soil only, 30: 1 stone, 45: 2 stones
 			soilHealth[i][j] = 15;
+      
 		}
 	}
 
 	// Initialize soidiers and their position
-
+  
 	// Initialize cabbages and their position
-
+  cabbageX = new float[nbrCabbage];
+  for(int i=0; i<nbrCabbage; i++){
+    cabbageX[i] = floor(random(8))*80;
+  }
+  
+  cabbageY = new float[nbrCabbage];
+    for(int i=0; i<nbrCabbage; i++){
+    cabbageY[i] = floor(random(4))*80;
+  }
+  
+  
+  
 }
 
 void draw() {
@@ -165,7 +180,16 @@ void draw() {
 
 		// Cabbages
 		// > Remember to check if playerHealth is smaller than PLAYER_MAX_HEALTH!
-
+    for(int i=0; i<nbrCabbage; i++){
+      float x = cabbageX[i];
+      float y = cabbageY[i];
+      image(cabbage, x, y+i*320);
+      println(cabbageX[i]);
+    }
+    
+    
+    
+    
 		// Groundhog
 
 		PImage groundhogDisplay = groundhogIdle;
