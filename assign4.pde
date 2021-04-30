@@ -103,6 +103,16 @@ void setup() {
 	}
 
 	// Initialize soidiers and their position
+  soldierX = new float[nbrSoldier];
+  for(int i=0; i<nbrSoldier; i++){
+    soldierX[i] = floor(random(8))*80;
+  }
+  
+  
+  soldierY = new float[nbrSoldier];
+    for(int i=0; i<nbrSoldier; i++){
+    soldierY[i] = floor(random(4))*80;
+  }
   
 	// Initialize cabbages and their position
   cabbageX = new float[nbrCabbage];
@@ -184,7 +194,6 @@ void draw() {
       float x = cabbageX[i];
       float y = cabbageY[i];
       image(cabbage, x, y+i*320);
-      println(cabbageX[i]);
     }
     
     
@@ -313,7 +322,17 @@ void draw() {
 		// > Remember to stop player's moving! (reset playerMoveTimer)
 		// > Remember to recalculate playerCol/playerRow when you reset playerX/playerY!
 		// > Remember to reset the soil under player's original position!
-
+    for(int i=0; i<nbrSoldier; i++){
+      float x = soldierX[i];
+      float y = soldierY[i];
+      image(soldier, x-80, y+i*320);
+      x += soldierSpeed;
+      x %= 640+80;
+    }
+    
+    
+    
+    
 		// Demo mode: Show the value of soilHealth on each soil
 		// (DO NOT CHANGE THE CODE HERE!)
 
@@ -368,9 +387,26 @@ void draw() {
 				}
 
 				// Initialize soidiers and their position
-
-				// Initialize cabbages and their position
-				
+        soldierX = new float[nbrSoldier];
+        for(int i=0; i<nbrSoldier; i++){
+          soldierX[i] = floor(random(8))*80;
+        }
+        
+        soldierY = new float[nbrSoldier];
+          for(int i=0; i<nbrSoldier; i++){
+          soldierY[i] = floor(random(4))*80;
+        }
+        
+        // Initialize cabbages and their position
+        cabbageX = new float[nbrCabbage];
+        for(int i=0; i<nbrCabbage; i++){
+          cabbageX[i] = floor(random(8))*80;
+        }
+        
+        cabbageY = new float[nbrCabbage];
+          for(int i=0; i<nbrCabbage; i++){
+          cabbageY[i] = floor(random(4))*80;
+        }
 			}
 
 		}else{
