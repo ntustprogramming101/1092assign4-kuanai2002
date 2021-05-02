@@ -386,8 +386,11 @@ void draw() {
       if(playerX < x+80 && playerX+80 > x
       && playerY < y+i*320+80 && playerY+80 > y+i*320){
         playerHealth --;
-        playerX = 320;
-        playerY = -80;
+        playerX = PLAYER_INIT_X;
+        playerY = PLAYER_INIT_Y;
+        playerCol = (int) (playerX / SOIL_SIZE);
+        playerRow = (int) (playerY / SOIL_SIZE);
+        playerMoveTimer = 0;
         if(playerHealth <= 0){
           gameState = GAME_OVER;
         }
