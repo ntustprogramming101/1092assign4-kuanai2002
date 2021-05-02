@@ -185,58 +185,58 @@ void draw() {
 				int areaIndex = floor(j / 4);
 				image(soils[areaIndex][4], i * SOIL_SIZE, j * SOIL_SIZE);
         
-        //stone1
-        for(int x=0; x<soilHealth.length; x++){
-          int stoneX = x*SOIL_SIZE;
-          int stoneY = x*SOIL_SIZE;
-          image(stones[0][4], stoneX, stoneY);
-        }
+      }
+    }
+    //stone1
+    for(int x=0; x<soilHealth.length; x++){
+      int stoneX = x*SOIL_SIZE;
+      int stoneY = x*SOIL_SIZE;
+      image(stones[0][4], stoneX, stoneY);
+    }
         
-        //stone 2
-        for(int x=0; x<soilHealth.length; x++){
-          if(x==2 || x==6){
-          int stoneX = x*SOIL_SIZE;
-            for(int y=0; y<soilHealth.length; y++){
-              if(y==0 || y==3 || y==4 || y==7){
-                int stoneY = floor(y/4)*2+y*SOIL_SIZE+640;
-                image(stones[0][4], -80+stoneX, stoneY);
-                image(stones[0][4], stoneX, stoneY);
-              }
+    //stone 2
+    for(int x=0; x<soilHealth.length; x++){
+      if(x==2 || x==6){
+        int stoneX = x*SOIL_SIZE;
+          for(int y=0; y<soilHealth.length; y++){
+            if(y==0 || y==3 || y==4 || y==7){
+              int stoneY = floor(y/4)*2+y*SOIL_SIZE+640;
+              image(stones[0][4], -80+stoneX, stoneY);
+              image(stones[0][4], stoneX, stoneY);
             }
           }
-        }
+      }
+    }
     
-        for(int x=0; x<soilHealth.length; x++){
-          if(x==0 || x==3 || x==4 || x==7){
-          int stoneX = x*80;
-            for(int y=0; y<soilHealth.length; y++){
-              if(y==2 || y==6){
-                int stoneY = floor(y/4)*2+y*SOIL_SIZE+640;
-                image(stones[0][4], stoneX, stoneY);
-                image(stones[0][4], stoneX, stoneY-80);
-              }
+    for(int x=0; x<soilHealth.length; x++){
+      if(x==0 || x==3 || x==4 || x==7){
+        int stoneX = x*80;
+          for(int y=0; y<soilHealth.length; y++){
+            if(y==2 || y==6){
+              int stoneY = floor(y/4)*2+y*SOIL_SIZE+640;
+              image(stones[0][4], stoneX, stoneY);
+              image(stones[0][4], stoneX, stoneY-80);
             }
           }
-        }
+      }
+    }
         
-        //stone 3
-        for(int x=0; x<soilHealth.length; x++){
-          for(int y=-6; y<15; y++){
-            if(y==-6 || y==-5 || y==-3 || y==-2 || y==0 || y==1 || y==3 || y==4 || y==6 || y==7){
-            int stoneX = y*80+x*80;
-            int stoneY = height-x*SOIL_SIZE+1280;
-            image(stones[0][4], stoneX, stoneY+SOIL_SIZE);
-            }
-            if(y==-5 || y==-2 || y==1 || y==4 || y==7){
-            int stoneX = y*80+x*80;
-            int stoneY = height-x*SOIL_SIZE+1280;
-            image(stones[1][4], stoneX, stoneY+SOIL_SIZE);
-            }
+    //stone 3
+    for(int x=0; x<soilHealth.length; x++){
+      for(int y=-6; y<15; y++){
+        if(y==-6 || y==-5 || y==-3 || y==-2 || y==0 || y==1 || y==3 || y==4 || y==6 || y==7){
+          int stoneX = y*80+x*80;
+          int stoneY = height-x*SOIL_SIZE+1280;
+          image(stones[0][4], stoneX, stoneY+SOIL_SIZE);
           }
-        }
+          if(y==-5 || y==-2 || y==1 || y==4 || y==7){
+          int stoneX = y*80+x*80;
+          int stoneY = height-x*SOIL_SIZE+1280;
+          image(stones[1][4], stoneX, stoneY+SOIL_SIZE);
+          }
+      }
+    }
 				
-			}
-		}
 
 		// Cabbages
 		// > Remember to check if playerHealth is smaller than PLAYER_MAX_HEALTH!
