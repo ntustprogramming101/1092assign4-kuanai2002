@@ -98,9 +98,9 @@ void setup() {
 		for (int j = 0; j < soilHealth[i].length; j++) {
 			 // 0: no soil, 15: soil only, 30: 1 stone, 45: 2 stones
 			soilHealth[i][j] = 15;
-            
 		}
 	}
+
 
 	// Initialize soidiers and their position
   soldierX = new float[nbrSoldier];
@@ -184,59 +184,38 @@ void draw() {
 				// NOTE: To avoid errors on webpage, you can either use floor(j / 4) or (int)(j / 4) to make sure it's an integer.
 				int areaIndex = floor(j / 4);
 				image(soils[areaIndex][4], i * SOIL_SIZE, j * SOIL_SIZE);
+
+
+        image(stones[0][4], i * SOIL_SIZE, i * SOIL_SIZE);
         
-      }
-    }
-    //stone1
-    for(int x=0; x<soilHealth.length; x++){
-      int stoneX = x*SOIL_SIZE;
-      int stoneY = x*SOIL_SIZE;
-      image(stones[0][4], stoneX, stoneY);
-    }
-        
-    //stone 2
-    for(int x=0; x<soilHealth.length; x++){
-      if(x==2 || x==6){
-        int stoneX = x*SOIL_SIZE;
-          for(int y=0; y<soilHealth.length; y++){
-            if(y==0 || y==3 || y==4 || y==7){
-              int stoneY = floor(y/4)*2+y*SOIL_SIZE+640;
-              image(stones[0][4], -80+stoneX, stoneY);
-              image(stones[0][4], stoneX, stoneY);
-            }
+        if(i==1 || i==2 || i==5 || i==6){
+          if(j==8 || j==11 || j==12 || j==15){
+            image(stones[0][4], i * SOIL_SIZE, j * SOIL_SIZE);
+            soilHealth[i][j] = 30;
           }
-      }
-    }
-    
-    for(int x=0; x<soilHealth.length; x++){
-      if(x==0 || x==3 || x==4 || x==7){
-        int stoneX = x*80;
-          for(int y=0; y<soilHealth.length; y++){
-            if(y==2 || y==6){
-              int stoneY = floor(y/4)*2+y*SOIL_SIZE+640;
-              image(stones[0][4], stoneX, stoneY);
-              image(stones[0][4], stoneX, stoneY-80);
-            }
+        }
+        if(i==0 || i==3 || i==4 || i==7){
+          if(j==9 || j==10 || j==13 || j==14){
+            image(stones[0][4], i * SOIL_SIZE, j * SOIL_SIZE);
+            soilHealth[i][j] = 30;
           }
+        }
+        if(j>=16){
+          if(i==-6 || i==-5 || i==-3 || i==-2 || i==0
+          || i==1 || i==3 || i==4 || i==6 || i==7 ){
+            int y = 23 * SOIL_SIZE;
+            image(stones[0][4], i * SOIL_SIZE, y);
+            y -= SOIL_SIZE;
+            
+          }
+        }
       }
     }
-        
+     
     //stone 3
-    for(int x=0; x<soilHealth.length; x++){
-      for(int y=-6; y<15; y++){
-        if(y==-6 || y==-5 || y==-3 || y==-2 || y==0 || y==1 || y==3 || y==4 || y==6 || y==7){
-          int stoneX = y*80+x*80;
-          int stoneY = height-x*SOIL_SIZE+1280;
-          image(stones[0][4], stoneX, stoneY+SOIL_SIZE);
-          }
-          if(y==-5 || y==-2 || y==1 || y==4 || y==7){
-          int stoneX = y*80+x*80;
-          int stoneY = height-x*SOIL_SIZE+1280;
-          image(stones[1][4], stoneX, stoneY+SOIL_SIZE);
-          }
-      }
-    }
-				
+    
+		
+    
 
 		// Cabbages
 		// > Remember to check if playerHealth is smaller than PLAYER_MAX_HEALTH!
@@ -383,7 +362,7 @@ void draw() {
     for(int i=0; i<nbrSoldier; i++){
       float x = soldierX[i];
       float y = soldierY[i];
-      if(playerX < x+80 && playerX+80 > x
+      if(playerX < x && playerX+80 > x-80
       && playerY < y+i*320+80 && playerY+80 > y+i*320){
         playerHealth --;
         playerX = PLAYER_INIT_X;
