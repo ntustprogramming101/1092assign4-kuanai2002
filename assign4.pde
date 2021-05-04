@@ -115,13 +115,17 @@ void setup() {
       //17-24
       for(int k=0; k<16; k++){
         if(k %3 ==1){
-         int x = -i+k;
-         int y = 16+i;
+         int x = i-5;
+         int y = 23;
          if(0<=x && x<8){
+           
            soilHealth[x][y] = 30;
+           
          }
          if(k %3 ==2){
            if(0<=x && x<8){
+             x += 3;
+             y -= 1;
              soilHealth[x][y] = 45;
            }
          }
@@ -268,7 +272,16 @@ void draw() {
 
 			// HINT:
 			// You can use playerCol and playerRow to get which soil player is currently on
-
+      
+      if(soilHealth[playerCol][playerRow+1] == 0){
+        groundhogDisplay = groundhogDown;
+        if(playerRow < SOIL_ROW_COUNT - 1){
+          playerMoveDirection = DOWN;
+          playerMoveTimer = playerMoveDuration;
+        }
+      }
+      
+      println(playerCol, playerRow);
 			// Check if "player is NOT at the bottom AND the soil under the player is empty"
 			// > If so, then force moving down by setting playerMoveDirection and playerMoveTimer (see downState part below for example)
 			// > Else then determine player's action based on input state
