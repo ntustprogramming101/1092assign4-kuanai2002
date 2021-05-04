@@ -101,6 +101,7 @@ void setup() {
 		}
 	}
 
+  
 
 	// Initialize soidiers and their position
   soldierX = new float[nbrSoldier];
@@ -185,8 +186,9 @@ void draw() {
 				int areaIndex = floor(j / 4);
 				image(soils[areaIndex][4], i * SOIL_SIZE, j * SOIL_SIZE);
 
-
+        
         image(stones[0][4], i * SOIL_SIZE, i * SOIL_SIZE);
+        soilHealth[i][i] = 30;
         
         if(i==1 || i==2 || i==5 || i==6){
           if(j==8 || j==11 || j==12 || j==15){
@@ -200,15 +202,23 @@ void draw() {
             soilHealth[i][j] = 30;
           }
         }
-        if(j>=16){
-          if(i==-6 || i==-5 || i==-3 || i==-2 || i==0
-          || i==1 || i==3 || i==4 || i==6 || i==7 ){
-            int y = 23 * SOIL_SIZE;
-            image(stones[0][4], i * SOIL_SIZE, y);
-            y -= SOIL_SIZE;
-            
-          }
+        
+        for(int a=0; a<3; a++){
+          int x = -5 * SOIL_SIZE;
+          int y = 23 * SOIL_SIZE;
+          x += (i+a*3) * SOIL_SIZE;
+          y -= i*SOIL_SIZE;
+          image(stones[0][4], x, y);
+          image(stones[0][4], x-SOIL_SIZE, y);
+          image(stones[1][4], x, y);
         }
+        
+            
+        
+        if(soilHealth[i][j] == 0){
+          image(soilEmpty, i * SOIL_SIZE, j * SOIL_SIZE);
+        }
+        
       }
     }
      
@@ -437,6 +447,8 @@ void draw() {
 						soilHealth[i][j] = 15;
 					}
 				}
+
+        
 
 				// Initialize soidiers and their position
         soldierX = new float[nbrSoldier];
