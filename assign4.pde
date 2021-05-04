@@ -98,9 +98,46 @@ void setup() {
 		for (int j = 0; j < soilHealth[i].length; j++) {
 			 // 0: no soil, 15: soil only, 30: 1 stone, 45: 2 stones
 			soilHealth[i][j] = 15;
+      soilHealth[i][i] = 30; //1-8
+      
+      //9-16
+      if(j==9 || j==10 || j==13 || j==14){
+        if(i==0 || i==3 || i==4 || i==7){
+          soilHealth[i][j] = 30;
+        }
+      }
+      if(j==8 || j==11 || j==12 || j==15){
+        if(i==1 || i==2 || i==5 || i==6){
+          soilHealth[i][j] = 30;
+        }
+      }
+      
+      //17-24
+      for(int k=0; k<16; k++){
+        if(k %3 ==1){
+         int x = -i+k;
+         int y = 16+i;
+         if(0<=x && x<8){
+           soilHealth[x][y] = 30;
+         }
+         if(k %3 ==2){
+           if(0<=x && x<8){
+             soilHealth[x][y] = 45;
+           }
+         }
+        }
+      }
+      
 		}
 	}
 
+  
+  
+  
+  for(int y=1; y<SOIL_ROW_COUNT; y++){
+      soilHealth[floor(random(8))][y] = 0;
+      soilHealth[floor(random(8))][y] = 0;
+  }
   
 
 	// Initialize soidiers and their position
@@ -185,46 +222,22 @@ void draw() {
 				// NOTE: To avoid errors on webpage, you can either use floor(j / 4) or (int)(j / 4) to make sure it's an integer.
 				int areaIndex = floor(j / 4);
 				image(soils[areaIndex][4], i * SOIL_SIZE, j * SOIL_SIZE);
-
-        
-        image(stones[0][4], i * SOIL_SIZE, i * SOIL_SIZE);
-        soilHealth[i][i] = 30;
-        
-        if(i==1 || i==2 || i==5 || i==6){
-          if(j==8 || j==11 || j==12 || j==15){
-            image(stones[0][4], i * SOIL_SIZE, j * SOIL_SIZE);
-            soilHealth[i][j] = 30;
-          }
-        }
-        if(i==0 || i==3 || i==4 || i==7){
-          if(j==9 || j==10 || j==13 || j==14){
-            image(stones[0][4], i * SOIL_SIZE, j * SOIL_SIZE);
-            soilHealth[i][j] = 30;
-          }
-        }
-        
-        for(int a=0; a<3; a++){
-          int x = -5 * SOIL_SIZE;
-          int y = 23 * SOIL_SIZE;
-          x += (i+a*3) * SOIL_SIZE;
-          y -= i*SOIL_SIZE;
-          image(stones[0][4], x, y);
-          image(stones[0][4], x-SOIL_SIZE, y);
-          image(stones[1][4], x, y);
-        }
-        
-            
         
         if(soilHealth[i][j] == 0){
           image(soilEmpty, i * SOIL_SIZE, j * SOIL_SIZE);
         }
         
+        if(soilHealth[i][j] == 30){
+          image(stones[0][4], i * SOIL_SIZE, j * SOIL_SIZE);
+        }
+        
+        if(soilHealth[i][j] == 45){
+          image(stones[0][4], i * SOIL_SIZE, j * SOIL_SIZE);
+          image(stones[1][4], i * SOIL_SIZE, j * SOIL_SIZE);
+        }
+        
       }
     }
-     
-    //stone 3
-    
-		
     
 
 		// Cabbages
@@ -448,7 +461,10 @@ void draw() {
 					}
 				}
 
-        
+        for(int y=1; y<SOIL_ROW_COUNT; y++){
+          soilHealth[floor(random(8))][y] = 0;
+          soilHealth[floor(random(8))][y] = 0;
+        }
 
 				// Initialize soidiers and their position
         soldierX = new float[nbrSoldier];
