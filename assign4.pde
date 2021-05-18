@@ -113,24 +113,22 @@ void setup() {
       }
       
       //17-24
-      for(int k=0; k<16; k++){
-        if(k %3 ==1){
-         int x = i-5;
-         int y = 23;
-         if(0<=x && x<8){
-           
-           soilHealth[x][y] = 30;
-           
-         }
-         if(k %3 ==2){
-           if(0<=x && x<8){
-             x += 3;
-             y -= 1;
-             soilHealth[x][y] = 45;
-           }
-         }
+        for(int k = 0 ; k<16 ; k++){
+          if(k %3 ==1){
+            int X = -i+k;
+            int Y = 16+i;
+            if(0<=X && X<8){
+              soilHealth[X][Y] = 30;
+            }
+          }
+          if(k %3 ==2){
+            int X = -i+k;
+            int Y = 16+i;
+            if(0<=X && X<8){
+              soilHealth[X][Y] = 45;
+            }
+          }
         }
-      }
       
 		}
 	}
