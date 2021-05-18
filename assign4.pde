@@ -249,13 +249,12 @@ void draw() {
     for(int i=0; i<nbrCabbage; i++){
       float x = cabbageX[i];
       float y = cabbageY[i];
-      if(playerX < x+80 && playerX+80 > x
-      && playerY < y+i*320+80 && playerY+80 > y+i*320){
-        cabbageX[i] = -80;
-        playerHealth ++;
-        if(playerHealth > 5){
-          playerHealth = 5;
-        }
+      if(playerHealth < 5){
+        if(playerX < x+80 && playerX+80 > x
+        && playerY < y+i*320+80 && playerY+80 > y+i*320){
+          cabbageX[i] = -80;
+          playerHealth ++;
+          }
       }
       image(cabbage, x, y+i*320);
     }
